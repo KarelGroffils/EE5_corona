@@ -88,31 +88,10 @@ void dl_UARTSendByte(char byte)
     
     //CALCULATE ODD PARITY BIT
 	TXSTA1bits.TX9D = calcOddParity(byte); //error correction bit
-//    //DEBUG
-//    if(calcOddParity(byte))
-//    {
-//        LATBbits.LATB5 = 1; 
-//    }
-//    else
-//    {
-//        LATBbits.LATB6 = 1; 
-//    }
-    //////
 
     //SEND DATA
-    
-    //while(!PIR1bits.TXIF);  // wait till TX buffer is free
-    //LATBbits.LATB4 = 1;
     TXREG = byte; //Load the transmitter buffer with the received value
-    //LATBbits.LATB3 = 1;
-    //debug
-//        for (int b =0; b < 30; b++) //wait for transmitter to startup
-//    {
-//        Nop(); //wait 1 cycle
-//    }    
-    //debug
 
-    //LATBbits.LATB6 = 1;
     //DISCONNECT TRANSMITTER FROM RC6
     while(!PIR1bits.TXIF);  // wait till TX buffer is free
     TRISCbits.TRISC6 = 1; // TX Pin set as high impedance
@@ -135,16 +114,6 @@ char dl_UARTRecieveByte()
     }
     else if(PIR1bits.RCIF)
     {
-//        /////DEBUG
-//        if(RCSTA1bits.RX9D)
-//        {
-//            LATBbits.LATB4 = 1; 
-//        }
-//        else
-//        {
-//            LATBbits.LATB3 = 1; 
-//        }
-//        //////
         unsigned char received_byte = RCREG;
         if ( RCSTA1bits.RX9D == calcOddParity(received_byte))
         {
@@ -161,12 +130,5 @@ char dl_UARTRecieveByte()
 
 void dl_UARTInterupt(void)
 {
-//    if(PIR1bits.RCIF  == 1) //ADC interupt
-//    {        
-//        newSample();
-//        LATBbits.LATB7 = 1;
-//        PIR1bits.RCIF  = 0; //clear interupt flag
-//    }  
-    //LATBbits.LATB7 = 1;
     char UARTRecieveByte();
 }
