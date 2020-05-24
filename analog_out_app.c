@@ -10,11 +10,6 @@ void aoa_initialize(void)
 
 }
 
-//void analogOutInterupt(void)
-//{
-//    
-//}
-
 void aoa_processEntry()
 {
     LATBbits.LATB1 = 1;
