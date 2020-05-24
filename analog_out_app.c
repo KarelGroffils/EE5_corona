@@ -41,35 +41,6 @@ void aoa_processEntry()
         {
             LATBbits.LATB4 = 1;
         }   
-    
-//    //OUTPUT the ID
-//    char ID_value = trpBufferId[trpBufferIndex];
-//    LATBbits.LATB5 = 0;
-//    LATBbits.LATB6 = 0;
-//    LATBbits.LATB7 = 0;
-//    if (ID_value == 1)
-//    {
-//        LATBbits.LATB5 = 1;
-//        LATBbits.LATB6 = 0;
-//        LATBbits.LATB7 = 0;
-//    }
-//    else if (ID_value == 2)
-//    {
-//        LATBbits.LATB5 = 0;
-//        LATBbits.LATB6 = 1;
-//        LATBbits.LATB7 = 0;
-//    }
-//    else if (ID_value == 3)
-//    {
-//        LATBbits.LATB5 = 1;
-//        LATBbits.LATB6 = 1;
-//        LATBbits.LATB7 = 0;
-//    }
-//    else if (ID_value > 3)
-//    {
-//        LATBbits.LATB5 = 0;
-//        LATBbits.LATB6 = 0;
-//        LATBbits.LATB7 = 1;
-//    }
+
     }
 }
