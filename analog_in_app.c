@@ -1,7 +1,6 @@
 #include "analog_in_app.h"
 
 unsigned int timer_togle = 0;
-//unsigned int sample_value = 0;
 
 void aia_initialize(void)
 { 
@@ -48,24 +47,15 @@ void aia_initialize(void)
     **************************************************/
     TMR0L = 0x00;    //Initialize the timer value
     
-    
-    //CONFIGURE OSCILLATOR -> standard 1MHz
-    
-    //SET VARIABLES
-    //trpBufferIndex = 0;
-    
+    //CONFIGURE OSCILLATOR -> standard 1MHz    
 }
 
 void aia_startSamplingSensor(void)
-{    
-    //sprintf("check");
-           
+{           
     PIR1bits.ADIF = 0; //clear ADC flag
     INTCONbits.TMR0IF=0;  //clear timer flag
     ADCON0bits.ADON = 1;  //start ADC
     T0CONbits.TMR0ON = 1;  //start Timer 0
-    
-    //INTCONbits.GIE = 1; //enable global interrupt
 }
 
 static void newSample(void)
