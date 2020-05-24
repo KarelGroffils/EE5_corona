@@ -1,7 +1,7 @@
 #include "analog_out_app.h"
 
 
-void initializeAnalogOut(void)
+void aoa_initialize(void)
 {
     //CONFIGURE I/O PORTS
     LATB = 0x00; //Initial PORTB
@@ -15,7 +15,7 @@ void initializeAnalogOut(void)
 //    
 //}
 
-void processEntry()
+void aoa_processEntry()
 {
     LATBbits.LATB1 = 1;
     LATBbits.LATB2 = 0;

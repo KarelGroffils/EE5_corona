@@ -34,16 +34,16 @@ void __interrupt (low_priority) low_ISR(void);  //low priority interrupt routine
 void main(void)
 {
     //INITIALIZE
-    initializeAnalogIn();
-    initializeAnalogOut();
+    aia_initialize();
+    aoa_initialize();
     dl_initialize();
-	startSamplingSensor();
+	aia_startSamplingSensor();
     INTCONbits.GIE = 1;	// Enable global interrupt
     
     //SOFTWARE POLLING
     while(true)    
     {
-        int get_value = UARTRecieveByte();
+        int get_value = dl_UARTRecieveByte();
         if (get_value > 1)
         {
             trpBufferRecieve[trpBufferRecieveIndex] = get_value; //Store incomming data in buffer
@@ -75,7 +75,7 @@ void main(void)
             //LATBbits.LATB1 = 1;
             trpBufferSendIndex--;
             char sendByte = trpBufferSend[trpBufferSendIndex]; //Send data in buffer
-            UARTSendByte(sendByte);
+            dl_UARTSendByte(sendByte);
             nt_UpdateTimer(); //works only in this specific case
             //UARTSendByte(0b11101110);
             
@@ -92,7 +92,7 @@ void main(void)
 //                LATBbits.LATB4 = 1;
 //            } 
             
-            processEntry();
+            aoa_processEntry();
 
         }
     }
@@ -102,8 +102,8 @@ void main(void)
 void __interrupt (high_priority) high_ISR(void)
 {
     INTCONbits.GIE = 0;	// Turn Off global interrupt
-    analogInInterupt();
-    UARTInterupt();
+    aia_Interupt();
+    dl_UARTInterupt();
     INTCONbits.GIE = 1;	// Enable global interrupt
 }
 

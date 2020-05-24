@@ -1,7 +1,7 @@
 #include "network_transport.h"
 
-char readMode = false;
-char updateMode = false;
+char readMode;
+char updateMode;
 
 //available ID's 1 to 16
 unsigned char IDTable[16];
@@ -11,7 +11,7 @@ unsigned char bufferFIFOIndex;
 unsigned char localHostID = 0;
 unsigned char externalHostID = 0;
 unsigned char timeOutTimer = 0;
-unsigned char refreshIDTimer = 400;
+unsigned int refreshIDTimer = 400;
 
 //#define CODE_PARITY_ERROR 255
 //#define CODE_RX_ERROR 254
@@ -22,16 +22,18 @@ unsigned char refreshIDTimer = 400;
 
 void nt_initialize(void)
 {
+    readMode = false;
+    updateMode = false;
     updateMode = true;
     IDTableIndex = 1;
 }
 void nt_updateIDTable()
 {
-    if(IDTableIndex = 16)
+    if(IDTableIndex == 16)
     {
         updateMode = false;
     }
-    if(!readmode)
+    if(!readMode)
     {
         if(localHostID == 0)//looking for free available ID
         {
@@ -41,7 +43,7 @@ void nt_updateIDTable()
                 updateMode = false;
             }
         }
-        readmode = true;
+        readMode = true;
         trpBufferSendID[trpBufferSendIndex] = IDTableIndex;
         externalHostID = IDTableIndex;
         trpBufferSend[trpBufferSendIndex] = CODE_REQUEST_ID;
@@ -82,11 +84,11 @@ void nt_chekData(unsigned char byte)
     }
     else if (byte == CODE_SENDER_ID)
     {
-        if(updatemode)
+        if(updateMode)
         {
             IDTable[IDTableIndex] = bufferFIFO[bufferFIFOIndex-1];
             IDTableIndex++;
-            readmode = false;
+            readMode = false;
         }
         else
         {
@@ -122,7 +124,7 @@ void nt_chekData(unsigned char byte)
 }
 
 
-void nt_UpdateTimer();
+void nt_UpdateTimer()
 {
     timeOutTimer--;
     if (timeOutTimer < 1)

@@ -15,11 +15,11 @@
 
 
 //prototypes
-void initializeAnalogIn(void);
-void analogInInterupt(void);
+void aia_initialize(void);
+void aia_Interupt(void);
 //void newSample(void);
 //void timer0Elapsed(void);
-void startSamplingSensor(void);
+void aia_startSamplingSensor(void);
 
 #endif	
 

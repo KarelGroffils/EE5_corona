@@ -75,7 +75,7 @@ static unsigned char calcOddParity(unsigned char byte)
 }
 
 
-void UARTSendByte(char byte) 
+void dl_UARTSendByte(char byte) 
 {
     //CONNECT TRANSMITTER TO RC6
     TXSTA1bits.TXEN  = 1;    // enable transmitter
@@ -120,7 +120,7 @@ void UARTSendByte(char byte)
 }
 
 
-char UARTRecieveByte()   
+char dl_UARTRecieveByte()   
 {
     if(RCSTAbits.FERR) //framing error
     { 
@@ -159,7 +159,7 @@ char UARTRecieveByte()
     return CODE_RX_ERROR;
 }
 
-void UARTInterupt(void)
+void dl_UARTInterupt(void)
 {
 //    if(PIR1bits.RCIF  == 1) //ADC interupt
 //    {        

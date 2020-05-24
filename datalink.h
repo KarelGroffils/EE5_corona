@@ -15,9 +15,9 @@
 
 
 void dl_initialize(void);
-void UARTSendByte(char byte);
-char UARTRecieveByte(void); 
-void UARTInterupt(void);
+void dl_UARTSendByte(char byte);
+char dl_UARTRecieveByte(void); 
+void dl_UARTInterupt(void);
 //unsigned char calcOddParity(unsigned char byte);
 
 #endif	/* XC_HEADER_TEMPLATE_H */

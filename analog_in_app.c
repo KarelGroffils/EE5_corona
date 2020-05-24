@@ -3,7 +3,7 @@
 unsigned int timer_togle = 0;
 //unsigned int sample_value = 0;
 
-void initializeAnalogIn(void)
+void aia_initialize(void)
 { 
     //CONFIGURE I/O PORTS
     LATA = 0x00; //Initial PORTA
@@ -56,7 +56,7 @@ void initializeAnalogIn(void)
     
 }
 
-void startSamplingSensor(void)
+void aia_startSamplingSensor(void)
 {    
     //sprintf("check");
            
@@ -93,7 +93,7 @@ static void timer0Elapsed(void)
 }
 
 
-void analogInInterupt(void)
+void aia_Interupt(void)
 {
     if(PIR1bits.ADIF  == 1) //ADC interupt
     {        
